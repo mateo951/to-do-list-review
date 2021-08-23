@@ -1,6 +1,6 @@
-## To-do-list ##
+## To-do-list-Review ##
 
-The project's goal is to learn how to use webpack. "To-do list" is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete. You will build a simple website that allows for doing that, and you will do it using ES6 and Webpack!
+The project's goal is to learn how to use webpack. "To-do list" is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete. You will build a simple website that allows for doing that, and you will do it using ES6 and Webpack! Understand and implement refractoring techniques into our code.
 
 Built With
 
