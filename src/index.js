@@ -20,29 +20,30 @@ const checkLocalInput = () => {
   const data = JSON.parse(localStorage.getItem('data'));
   if (data !== null) {
     Tasks.initializeTasks(data);
-    for (let i = 0; i < data.length; i += 1) {
-      if (Interactions.hasValue(data[i])) {
-        Interactions.updateDisplay(data[i]);
+    data.forEach(element => {
+      if (Interactions.hasValue(data[element])) {
+        Interactions.updateDisplay(data[element]);
       }
-    }
+    });
   }
 };
 
 const edit = function (taskH3) {
-  const editInput = document.getElementById(`e${taskH3.id.substring(1)}`);
-  const h3Text = document.getElementById(`d${taskH3.id.substring(1)}`);
-  const deleteIcon = document.getElementById(`i${taskH3.id.substring(1)}`);
-  const optionIcon = document.getElementById(`o${taskH3.id.substring(1)}`);
-  const editLi = document.getElementById(`l${taskH3.id.substring(1)}`);
+  const taskId = taskH3.id.substring(1);
+  const editInput = document.getElementById(`e${taskId}`);
+  const h3Text = document.getElementById(`d${taskId}`);
+  const deleteIcon = document.getElementById(`i${taskId}`);
+  const optionIcon = document.getElementById(`o${taskId}`);
+  const editLi = document.getElementById(`l${taskId}`);
 
   if (taskH3 && editLi && editInput && h3Text && deleteIcon && optionIcon) {
     Interactions.editMode = !Interactions.editMode;
-    if (editInput.value !== Tasks.tasksData[taskH3.id.substring(1)].description) {
+    if (editInput.value !== Tasks.tasksData[taskId].description) {
       if (!Interactions.editMode && editInput.value === '' && taskH3.tagName === 'INPUT') {
         Interactions.editMode = !Interactions.editMode; /* eslint-disable-next-line */
         removeTask(taskH3);
       } else if (Interactions.hasValue(editInput.value)) {
-        Interactions.updateDesc(editInput.value, taskH3.id.substring(1), h3Text);
+        Interactions.updateDesc(editInput.value, taskId, h3Text);
       }
     }
 
@@ -76,10 +77,10 @@ const clearCompleted = () => {
       Tasks.tasksData = Tasks.tasksData.filter((task) => !task.completed);
       const ul = document.getElementById('spawnTasks');
       ul.innerHTML = '';
-      for (let i = 0; i < Tasks.tasksData.length; i += 1) {
-        Tasks.tasksData[i].index = i;
-        Interactions.updateDisplay(Tasks.tasksData[i]);
-      }
+      array.forEach(element => {
+        Tasks.tasksData[element].index = i;
+        Interactions.updateDisplay(Tasks.tasksData[element]);
+      });
       Interactions.CheckInput();
     }
   });
